@@ -1,0 +1,20 @@
+StomyStory's server side application
+
+
+folder app.api  # restful api and jwt authentication
+
+  create user
+  POST /api/user -H "Content type": "application/json" -d {"email": "abc@example.com", "password": "abcxyz"}
+
+  get user data
+  GET /api/user -H "Authorization": "JWT access_token"
+
+  put new field
+  <admin> for banning user
+  PUT /api/user -H "Content type": "application/json" -d {...}
+
+  delete exist user
+  <admin> DELETE /api/user/id
+
+folder app.model  # elasticsearch model for searchable data and log
+
