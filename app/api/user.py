@@ -2,6 +2,7 @@ from flask import jsonify, request
 from werkzeug.security import generate_password_hash
 from bson.objectid import ObjectId
 from flask_jwt import jwt_required, current_identity
+from ..tasks import async
 from . import api, db
 from .errors import bad_request
 
@@ -21,6 +22,7 @@ def get_user():
 
 
 @api.route('/user', methods=['POST'])
+@async
 def post_user():
     '''
     POST method for create new user in the system with basic infomation
