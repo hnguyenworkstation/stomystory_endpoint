@@ -2,7 +2,7 @@ from flask import jsonify, request
 from werkzeug.security import generate_password_hash
 from bson.objectid import ObjectId
 from flask_jwt import jwt_required, current_identity
-from ..tasks import async
+# from ..tasks import async
 from . import api, db
 from .errors import bad_request
 
@@ -22,7 +22,7 @@ def get_user():
 
 
 @api.route('/user', methods=['POST'])
-@async
+# @async
 def post_user():
     '''
     POST method for create new user in the system with basic infomation
@@ -37,11 +37,13 @@ def post_user():
     if User.find_one({'email': email}):
         id = User.find_one({'email': email})['_id']
         return jsonify({"error": "user already exist", "id": str(id)})
+
     user = {
         "email": email,
         "password_hash": generate_password_hash(
             password, method='pbkdf2:sha1:5000')
     }
+
     id = str(User.insert_one(user).inserted_id)
     return jsonify({'acknowledgement': True, 'id': id})
 
@@ -57,6 +59,7 @@ def put_user():
     return jsonify({'acknowledgement': True})
 
 
+# admin only
 @api.route('/user', methods=['DELETE'])
 @jwt_required()
 def del_user():
