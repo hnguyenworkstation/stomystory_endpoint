@@ -1,10 +1,9 @@
 from collections import OrderedDict
-import datetime
 from flask import jsonify, redirect
 from flask_jwt import JWT, JWTError
 from flask_restful import Resource, reqparse
 from werkzeug.security import safe_str_cmp
-
+from datetime import *
 from models.user import *
 
 parser = reqparse.RequestParser()
@@ -71,7 +70,7 @@ def handle_user_exception_again(e):
 
 def jwt_init(app):
     app.config['SECRET_KEY'] = '^%^(*&(^&^`~GYUdsjfksadas2141!~'
-    app.config["JWT_EXPIRATION_DELTA"] =datetime.timedelta(hours=24)
+    app.config["JWT_EXPIRATION_DELTA"] = timedelta(hours=24)
 
     app.config["JWT_AUTH_URL_RULE"] = "/login"
     # Catch exception and return it to users
