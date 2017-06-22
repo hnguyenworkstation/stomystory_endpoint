@@ -1,19 +1,22 @@
 import os
+import datetime
 basedir = os.path.abspath(os.path.dirname(__file__))
 APP_NAME = 'Foody'
 
 
 class Config:
-    SECRET_KEY = os.environ.get('SECRET_KEY') or '9e267af668343a7154ba3edbae272569'
-    JWT_AUTH_USERNAME_KEY = 'email'
-    MAIL_SERVER = 'smtp.googlemail.com'
-    MAIL_PORT = 587
-    MAIL_USE_TLS = True
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    MAIL_SUBJECT_PREFIX = '[APP_NAME]'
-    MAIL_SENDER = APP_NAME + ' Admin <%s@example.com>' % APP_NAME
-    ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL')
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'someRandomString'
+    JWT_REFRESH_TOKEN_EXPIRES = datetime.timedelta(hours=12)
+    JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(minutes=5)
+
+    # MAIL_SERVER = 'smtp.googlemail.com'
+    # MAIL_PORT = 587
+    # MAIL_USE_TLS = True
+    # MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+    # MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+    # MAIL_SUBJECT_PREFIX = '[APP_NAME]'
+    # MAIL_SENDER = APP_NAME + ' Admin <%s@example.com>' % APP_NAME
+    # ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL')
     # FLASKY_POSTS_PER_PAGE = 20
     # FLASKY_FOLLOWERS_PER_PAGE = 50
     # FLASKY_COMMENTS_PER_PAGE = 30

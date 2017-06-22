@@ -1,7 +1,15 @@
 # from role import Role
 # from user import User, AnonymousUser
 # from order import Order
+import os
+from pymongo import MongoClient
 from elasticsearch_dsl.connections import connections
+
+username = os.getenv('DB_USERNAME') or '1'
+password = os.getenv('DB_PASSWORD') or '1'
+connection = MongoClient('ds133192.mlab.com', 33192)
+db = connection['stomystory']
+db.authenticate(username, password)
 
 
 class ElasticDB():
