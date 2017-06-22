@@ -16,6 +16,7 @@ def get_user():
     id = get_jwt_identity()
     user = db.user.find_one({'_id': ObjectId(id)})
     not_return_keys = (
+        '_id',
         'password_hash',
         'verified',
         'ip'
@@ -34,6 +35,7 @@ def put_user():
     data_bag = dict(request.get_json())
     # protected field
     protected_field = (
+        '_id',
         'email',
         'password_hash',
         'verified',
